@@ -1,13 +1,8 @@
 <template>
     <div>
-        <input type="text" 
-               class="coupon-code" 
-               v-model="code" 
-               @input="validate"
-        />
-        <p v-if="valid">
-            Coupon Redeemed: {{message}}
-        </p>
+        <input type="text" class="coupon-code" v-model="code" @input="validate">
+
+        <p v-text="feedback"></p>
     </div>
 </template>
 
@@ -16,35 +11,45 @@
         data () {
             return {
                 code: '',
-                valid: false,
+                // In real life, you wouldn't hardcode this coupons array.
+                // Instead, your validate() method would fire an AJAX
+                // request to your server to check if the coupon is real.
+                // To keep the demo simple, we'll hardcode the list.
                 coupons: [
                     {
-                        code: '50OFF',
-                        message: '50% Off!',
-                        discount: 50
+                        code: '10OFF',
+                        message: '10% Off!',
+                        discount: 10
                     },
                     {
                         code: 'FREE',
                         message: 'Entirely Free!',
                         discount: 100
-                    },
-                ]
+                    }
+                ],
+                valid: false
             };
         },
-        methods: {
-            validate() {
-                this.valid = this.coupons.map(coupon => coupon.code).includes(this.code);
+        computed: {
+            selectedCoupon () {
+                return this.coupons.find(coupon => coupon.code == this.code);
+            },
+            message () {
+                return this.selectedCoupon.message;
+            },
+            feedback () {
                 if (this.valid) {
-                    let discount = this.coupons.find((coupon) => coupon.code == this.code).discount;
-                    this.$emit('applied', discount);
+                    return `Coupon Redeemed: ${this.message}`;
                 }
+                return 'Invalid Coupon Code';
             }
         },
-        computed: {
-            message() {
-                return this.coupons.find((coupon) => {
-                    return coupon.code === this.code;
-                }).message;
+        methods: {
+            validate () {
+                this.valid = !! this.selectedCoupon;
+                if (this.valid) {
+                    this.$emit('applied', this.selectedCoupon.discount);
+                }
             }
         }
     }
