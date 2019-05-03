@@ -6,7 +6,7 @@
                @input="validate"
         />
         <p v-if="valid">
-            Coupon Redeemend: {{message}}
+            Coupon Redeemed: {{message}}
         </p>
     </div>
 </template>

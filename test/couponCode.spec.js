@@ -15,7 +15,7 @@ describe("CouponCode", () => {
         let couponCode = wrapper.find('input.coupon-code');
         couponCode.element.value = '50OFF';
         couponCode.trigger('input');
-        expect(wrapper.html()).toContain('Coupon Redeemed: 50% Off!')
+        expect(wrapper.text()).toContain('Coupon Redeemed: 50% Off!')
     });
 
 
