@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha-webpack --webpack-config webpack.config.js test/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,14 @@
   },
   "homepage": "https://github.com/fogelkuba/testingvue#readme",
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.29",
     "mocha": "^6.1.4",
-    "mocha-webpack": "^1.1.0",
-    "vue-test-utils": "^1.0.0-beta.11"
+    "mocha-webpack": "^2.0.0-beta.0",
+    "vue-test-utils": "^1.0.0-beta.11",
+    "webpack": "^4.30.0"
   },
   "dependencies": {
+    "expect": "^24.7.1",
     "vue": "^2.6.10"
   }
 }
