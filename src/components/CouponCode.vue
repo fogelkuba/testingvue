@@ -34,6 +34,9 @@
         methods: {
             validate() {
                 this.valid = this.coupons.map(coupon => coupon.code).includes(this.code);
+                if (this.valid) {
+                    this.$emit('applied', 50, 'foobar');
+                }
             }
         },
         computed: {
