@@ -19,7 +19,7 @@ describe("CouponCode", () => {
     });
 
 
-    if('broadcasts the percentage discount when a valid coupon code is applied', () => {
+    it('broadcasts the percentage discount when a valid coupon code is applied', () => {
             let couponCode = wrapper.find('input.coupon-code');
             couponCode.element.value = '50OFF';
             couponCode.trigger('input');
