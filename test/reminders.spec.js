@@ -1,33 +1,46 @@
-import {mount} from '@vue/test-utils';
-import expect from 'expect';
-import Reminders from '../src/components/Reminders.vue';
-import Vue from 'vue';
+import { mount } from "vue-test-utils";
+import expect from "expect";
+import Reminders from "../src/components/Reminders.vue";
 
-describe ('Reminders', () => {
+describe("Reminders", () => {
+  let wrapper;
 
-    it('hides the reminders list if there are none', () => {
-        let wrapper = mount(Reminders)
-        expect(wrapper.contains('ul')).toBe(false)
-    });
+  beforeEach(() => {
+    wrapper = mount(Reminders);
+  });
 
-    it('can add reminders', () => {
-        let wrapper = mount(Reminders);
-        let newReminder = wrapper.find('.new-reminder');
+  it("hides the reminders list if there are none", () => {
+    expect(wrapper.contains("ul")).toBe(false);
+  });
 
-        newReminder.setValue('Go to the store');
-        newReminder.trigger('input');
+  it("can add reminders", () => {
+    addReminder("Go to the store");
 
-        wrapper.find('button').trigger('click');
+    expect(remindersList()).toContain("Go to the store");
+  });
 
-        return Vue.nextTick().then(() => {
-            expect(wrapper.find('ul').text()).toContain('Go to the store')
-        })
-    });
+  it("can remove any reminder", () => {
+    addReminder("Go to the store");
+    addReminder("Finish screencast");
 
+    let deleteButton = wrapper.find("ul > li:first-child .remove");
 
+    deleteButton.trigger("click");
 
-    it('', () => {
-        //
-    });
+    expect(remindersList()).not.toContain("Go to the store");
+    expect(remindersList()).toContain("Finish screencast");
+  });
 
+  function addReminder(body) {
+    let newReminder = wrapper.find(".new-reminder");
+
+    newReminder.element.value = body;
+    newReminder.trigger("input");
+
+    wrapper.find("button").trigger("click");
+  }
+
+  function remindersList() {
+    return wrapper.find("ul").text();
+  }
 });
