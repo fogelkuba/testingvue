@@ -24,7 +24,8 @@ describe("CouponCode", () => {
             couponCode.element.value = '50OFF';
             couponCode.trigger('input');
 
-            expect(wrapper.emitted().aplied).toBeTruthy()
+            expect(wrapper.emitted().aplied).toBeTruthy();
+            expect(wrapper.emitted().aplied[0]).toEqual(50);
     });
 
 }); 
