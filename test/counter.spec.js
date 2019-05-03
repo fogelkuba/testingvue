@@ -21,8 +21,6 @@ describe('Counter', () => {
     });
 
     it('decrements the count when the decrement button is clicked', () => {
-        // expect(wrapper.vm.count).toBe(0)
-        // wrapper.find('.increment').trigger('click'); // +1
         wrapper.setData({
             count: 5
         });
@@ -31,9 +29,14 @@ describe('Counter', () => {
     });
 
     it('never goes below 0', () => {
-         expect(wrapper.vm.count).toBe(0)
-         wrapper.find('.decrement').trigger('click'); // -1
-         expect(wrapper.vm.count).toBe(0)
+        expect(wrapper.vm.count).toBe(0);
+        expect(wrapper.find('.decrement').isVisible()).toBe(false);
+        wrapper.find('.increment').trigger('click'); // -1
+        //important part below
+        return Vue.nextTick().then(() => {
+            expect(wrapper.find('.decrement').isVisible()).toBe(true);
+        });
+
     })
 
     it('presents the current count', () => {
