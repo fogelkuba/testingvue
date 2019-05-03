@@ -1,6 +1,10 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
+    watchOptions: {
+        poll: true,
+        ignored: /node_modules/
+    },
     module: {
         rules: [
             {
