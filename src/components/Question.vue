@@ -23,6 +23,7 @@ export default {
     props: ['question'],
     data() {
         return {
+            question: this.dataQuestion,
             editing: false
         };
     },

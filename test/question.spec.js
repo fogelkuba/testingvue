@@ -10,7 +10,7 @@ describe('Question', () => {
     beforeEach( () => {
         wrapper = mount(Question, {
             propsData: {
-                question: {
+                dataQuestion: {
                     title: 'The title',
                     body: 'The body'
                 }
@@ -46,11 +46,17 @@ describe('Question', () => {
         // wrapper.find('input[name=title]').trigger('input');
         type('input[name=title]', 'Changed title');
         type('textarea[name=body]', 'Changed body');
-        
         click('#update');
-        see('The title');
-        see('The body');
+        see('Changed title');
+        see('Changed body');
     });
+
+    it('can cancel out of edit mode', () => {
+        click('#edit')
+        type('input[name=title]', 'Changed title');
+        click('#cancel')
+        see('The title');
+    })
 
     //helpers
     let see =  (text, selector) => {
