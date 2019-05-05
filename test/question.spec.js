@@ -16,25 +16,25 @@ describe('Question', () => {
         });
     });
 
-    it('presents the title and the body', () => {
+    it('Presents the title and the body', () => {
         see('The title');
         see('The body');
     });
 
-    it('can trigger edit mode', () => {
+    it('Can trigger edit mode', () => {
         expect(wrapper.contains('input[name=title]')).toBe(false);
         click('#edit');
         expect(wrapper.find('input[name=title]').element.value).toBe('The title');
         expect(wrapper.find('textarea[name=body]').element.value).toBe('The body');
     });
 
-    it('hides the edit button during edit mode', () => {
+    it('Hides the edit button during edit mode', () => {
         expect(wrapper.contains('#edit')).toBe(true);
         click('#edit');
         expect(wrapper.contains('#edit')).toBe(false);
     });
 
-    it('updates the question after being edited', () => {
+    it('Updates the question after being edited', () => {
         click('#edit');
         type('Changed title', 'input[name=title]');
         type('Changed body', 'textarea[name=body]');
@@ -43,7 +43,7 @@ describe('Question', () => {
         see('Changed body');
     });
 
-    it('can cancel out of edit mode', () => {
+    it('Can cancel out of edit mode', () => {
         click('#edit');
         type('Changed title', 'input[name=title]');
         click('#cancel');
