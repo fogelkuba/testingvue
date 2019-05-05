@@ -27,19 +27,21 @@ describe('Question', () => {
 
     it('can be edited', () => {
         expect(wrapper.contains('input[name=title]')).toBe(false)
-        wrapper.find('#edit').trigger('click');
+        // wrapper.find('#edit').trigger('click');
+         click('#edit')
         expect(wrapper.find('input[name=title]').element.value).toBe('The title');
         expect(wrapper.find('textarea[name=body]').element.value).toBe('The body');
     });
 
     it('hides the edit button during edit mode', () => {
-        wrapper.find('#edit').trigger('click');
+        // wrapper.find('#edit').trigger('click');
+         click('#edit')
         expect(wrapper.contains('#edit')).toBe(false);
     });
 
     it('updates the question after being edited', () => {
-        wrapper.find('#edit').trigger('click')
-
+        // wrapper.find('#edit').trigger('click')
+        click('#edit')
         // wrapper.find('input[name=title]').element.value = 'Changed title';
         // wrapper.find('input[name=title]').trigger('input');
         type('input[name=title]', 'Changed title');
@@ -53,7 +55,12 @@ describe('Question', () => {
     };
 
     let type = (text, selector) => {
-        wrapper.find(selector).element.value = text;
-        wrapper.find(selector).trigger('input');
+        let node = wrapper.find(selector);
+        node.element.value = text;
+        node.trigger('input');
     };
+
+    let click = selector => {
+        wrapper.find(selector).trigger('click');
+    }
 });
