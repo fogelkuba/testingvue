@@ -12,6 +12,6 @@ describe('Question', () => {
     });
 
     it('presents the title and the body', () => {
-        
-    })
+        expect(wrapper.html()).toContain('The Title');
+    });
 });
