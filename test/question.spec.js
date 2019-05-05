@@ -37,8 +37,23 @@ describe('Question', () => {
         expect(wrapper.contains('#edit')).toBe(false);
     });
 
+    it('updates the question after being edited', () => {
+        wrapper.find('#edit').trigger('click')
+
+        // wrapper.find('input[name=title]').element.value = 'Changed title';
+        // wrapper.find('input[name=title]').trigger('input');
+        type('input[name=title]', 'Changed title');
+        type('textarea[name=body]', 'Changed body');
+    });
+
+    //helpers
     let see =  (text, selector) => {
         let wrap = selector ? wrapper.find(selector) : wrapper;
         expect(wrap.html()).toContain(text);
-    }
+    };
+
+    let type = (text, selector) => {
+        wrapper.find(selector).element.value = text;
+        wrapper.find(selector).trigger('input');
+    };
 });
