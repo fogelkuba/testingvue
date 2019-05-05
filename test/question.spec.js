@@ -46,6 +46,10 @@ describe('Question', () => {
         // wrapper.find('input[name=title]').trigger('input');
         type('input[name=title]', 'Changed title');
         type('textarea[name=body]', 'Changed body');
+        
+        click('#update');
+        see('The title');
+        see('The body');
     });
 
     //helpers
