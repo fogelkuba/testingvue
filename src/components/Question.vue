@@ -11,6 +11,8 @@
     <div v-else>
         <input type="text" name="title" v-model="question.title">
         <textarea type="text" name="body" v-model="question.body"></textarea>
+
+        <button id="update" @click="editing = false">Update</button>
     </div>
 
 </div>
