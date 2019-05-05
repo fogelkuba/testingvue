@@ -19,31 +19,24 @@ describe('Question', () => {
     });
 
     it('presents the title and the body', () => {
-        // expect(wrapper.html()).toContain('The Title');
-        // expect(wrapper.html()).toContain('The body');
         see('The title');
         see('The body');
     });
 
     it('can be edited', () => {
         expect(wrapper.contains('input[name=title]')).toBe(false)
-        // wrapper.find('#edit').trigger('click');
-         click('#edit')
+        click('#edit')
         expect(wrapper.find('input[name=title]').element.value).toBe('The title');
         expect(wrapper.find('textarea[name=body]').element.value).toBe('The body');
     });
 
     it('hides the edit button during edit mode', () => {
-        // wrapper.find('#edit').trigger('click');
-         click('#edit')
+        click('#edit')
         expect(wrapper.contains('#edit')).toBe(false);
     });
 
     it('updates the question after being edited', () => {
-        // wrapper.find('#edit').trigger('click')
-        click('#edit')
-        // wrapper.find('input[name=title]').element.value = 'Changed title';
-        // wrapper.find('input[name=title]').trigger('input');
+        click('#edit');
         type('input[name=title]', 'Changed title');
         type('textarea[name=body]', 'Changed body');
         click('#update');
