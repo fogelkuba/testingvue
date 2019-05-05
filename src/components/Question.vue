@@ -4,7 +4,7 @@
     <div v-if="!editing">
         <h1>{{question.title}}</h1>
         <div class="body">{{question.body}}</div>
-        <button id="edit" v-if="editing" @click="editing = !editing">Edit</button>
+        <button id="edit" v-if="!editing" @click="editing = !editing">Edit</button>
     </div>
 
     <!-- edit the question -->

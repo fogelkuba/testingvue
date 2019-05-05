@@ -29,7 +29,7 @@ describe('Question', () => {
         expect(wrapper.contains('input[name=title]')).toBe(false)
         wrapper.find('#edit').trigger('click');
         expect(wrapper.find('input[name=title]').element.value).toBe('The title');
-        expect(wrapper.find('input[name=body]').element.value).toBe('The body');
+        expect(wrapper.find('textarea[name=body]').element.value).toBe('The body');
     });
 
     it('hides the edit button during edit mode', () => {
