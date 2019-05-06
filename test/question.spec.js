@@ -42,7 +42,7 @@ describe('Question', () => {
         expect(wrapper.contains('#edit')).toBe(false);
     });
 
-    it.only('Updates the question after being edited', () => {
+    it('Updates the question after being edited', (done) => {
         click('#edit');
         type('Changed title', 'input[name=title]');
         type('Changed body', 'textarea[name=body]');
@@ -57,8 +57,12 @@ describe('Question', () => {
 
         click('#update');
         see('Changed title');
-        see('Changed body', '.feedback');
-        see('Your question has been updated.');
+        see('Changed body');
+
+        moxios.wait(() => {
+            see('Your question has been updated.', '.feedback');
+            done();
+        });
     });
 
     it('Can cancel out of edit mode', () => {
