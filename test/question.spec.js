@@ -47,7 +47,7 @@ describe('Question', () => {
         type('Changed title', 'input[name=title]');
         type('Changed body', 'textarea[name=body]');
 
-        moxios.stubRequest('/questions/1', {
+        moxios.stubRequest(/questions\/.+/, {
             status: 200,
             response: {
                 title: 'Changed title',
