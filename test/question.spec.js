@@ -42,7 +42,7 @@ describe('Question', () => {
         expect(wrapper.contains('#edit')).toBe(false);
     });
 
-    it('Updates the question after being edited', () => {
+    it.only('Updates the question after being edited', () => {
         click('#edit');
         type('Changed title', 'input[name=title]');
         type('Changed body', 'textarea[name=body]');
@@ -57,7 +57,8 @@ describe('Question', () => {
 
         click('#update');
         see('Changed title');
-        see('Changed body');
+        see('Changed body', '.feedback');
+        see('Your question has been updated.');
     });
 
     it('Can cancel out of edit mode', () => {
