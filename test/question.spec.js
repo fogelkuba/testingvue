@@ -9,7 +9,7 @@ describe('Question', () => {
 
     beforeEach(() => {
         moxios.install();
-        
+
         wrapper = mount(Question, {
             propsData: {
                 dataQuestion: {
@@ -46,6 +46,15 @@ describe('Question', () => {
         click('#edit');
         type('Changed title', 'input[name=title]');
         type('Changed body', 'textarea[name=body]');
+
+        moxios.stubRequest('/questions/1', {
+            status: 200,
+            response: {
+                title: 'Changed title',
+                body: 'Changed body'
+            }
+        })
+
         click('#update');
         see('Changed title');
         see('Changed body');
