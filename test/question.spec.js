@@ -1,11 +1,15 @@
 import {mount} from 'vue-test-utils';
 import expect from 'expect';
 import Question from '../src/components/Question.vue';
+import axios from 'axios';
+import moxios from 'moxios';
 
 describe('Question', () => {
     let wrapper;
 
     beforeEach(() => {
+        moxios.install();
+        
         wrapper = mount(Question, {
             propsData: {
                 dataQuestion: {
@@ -15,6 +19,10 @@ describe('Question', () => {
             }
         });
     });
+
+    afterEach(() => {
+        moxios.uninstall();
+    })
 
     it('Presents the title and the body', () => {
         see('The title');
