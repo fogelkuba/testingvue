@@ -39,6 +39,12 @@
             update () {
                 this.question.title = this.form.title;
                 this.question.body = this.form.body;
+
+                // axios.post('/questions/1', this.form)
+                //     .then(response => {
+                //         //
+                //     });
+
                 this.editing = false;
             }
         }
